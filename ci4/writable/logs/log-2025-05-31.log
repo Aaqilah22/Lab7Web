@@ -1,0 +1,85 @@
+CRITICAL - 2025-05-31 11:31:40 --> Error: Call to a member function move() on null
+[Method: POST, Route: admin/artikel/add]
+in APPPATH\Controllers\Artikel.php on line 56.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Artikel->add()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\Lab7Web-master\\ci4\\public\\index.php')
+CRITICAL - 2025-05-31 11:32:19 --> ErrorException: Undefined variable $row
+[Method: GET, Route: artikel/artikel-pertama]
+in APPPATH\Views\artikel\detail.php on line 6.
+ 1 APPPATH\Views\artikel\detail.php(6): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\Lab7Web-master\\ci4\\app\\Views\\artikel\\detail.php', 6)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\Lab7Web-master\\ci4\\app\\Views\\artikel\\detail.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('artikel/detail', [], true)
+ 5 APPPATH\Controllers\Artikel.php(31): view('artikel/detail', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Artikel->view('artikel-pertama')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\Lab7Web-master\\ci4\\public\\index.php')
+CRITICAL - 2025-05-31 11:32:59 --> Error: Call to a member function move() on null
+[Method: POST, Route: admin/artikel/add]
+in APPPATH\Controllers\Artikel.php on line 56.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Artikel->add()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\Lab7Web-master\\ci4\\public\\index.php')
+CRITICAL - 2025-05-31 11:33:36 --> ErrorException: Undefined variable $row
+[Method: GET, Route: artikel/artikel-kedua]
+in APPPATH\Views\artikel\detail.php on line 6.
+ 1 APPPATH\Views\artikel\detail.php(6): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\Lab7Web-master\\ci4\\app\\Views\\artikel\\detail.php', 6)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\Lab7Web-master\\ci4\\app\\Views\\artikel\\detail.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('artikel/detail', [], true)
+ 5 APPPATH\Controllers\Artikel.php(31): view('artikel/detail', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Artikel->view('artikel-kedua')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\Lab7Web-master\\ci4\\public\\index.php')
+CRITICAL - 2025-05-31 13:35:34 --> Error: Call to a member function move() on null
+[Method: POST, Route: admin/artikel/add]
+in APPPATH\Controllers\Artikel.php on line 56.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Artikel->add()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\lab11_php_ci\\ci4\\public\\index.php')
+CRITICAL - 2025-05-31 14:14:24 --> Error: Call to a member function move() on null
+[Method: POST, Route: admin/artikel/add]
+in APPPATH\Controllers\Artikel.php on line 58.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Artikel->add()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\lab11_php_ci\\ci4\\public\\index.php')
+CRITICAL - 2025-05-31 15:28:34 --> ErrorException: Undefined variable $row
+[Method: GET, Route: artikel/Tips-menjaga-kesehatan-kulit]
+in APPPATH\Views\artikel\detail.php on line 6.
+ 1 APPPATH\Views\artikel\detail.php(6): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\lab11_php_ci\\ci4\\app\\Views\\artikel\\detail.php', 6)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\lab11_php_ci\\ci4\\app\\Views\\artikel\\detail.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('artikel/detail', [], true)
+ 5 APPPATH\Controllers\Artikel.php(31): view('artikel/detail', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Artikel->view('Tips-menjaga-kesehatan-kulit')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Artikel))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\xampp\\htdocs\\lab11_php_ci\\ci4\\public\\index.php')

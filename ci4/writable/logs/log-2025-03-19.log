@@ -1,0 +1,4 @@
+CRITICAL - 2025-03-19 01:38:22 --> ErrorException: Declaration of App\Cells\ArtikelTerkini::render() must be compatible with CodeIgniter\View\Cell::render(string $library, $params = null, int $ttl = 0, ?string $cacheName = null): string
+[Method: GET, Route: /]
+in APPPATH\Cells\ArtikelTerkini.php on line 7.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
