@@ -30,4 +30,66 @@ CREATE TABLE artikel (
   PRIMARY KEY(id)
 );
 ```
-3. 
+3. Membuat Model direktori **app/Models** dengan nama **ArtikelModel.php**
+   ```
+   <?php
+   namespace App\Models;
+   use CodeIgniter\Model;
+   class ArtikelModel extends Model
+   {
+      protected $table = 'artikel';
+      protected $primaryKey = 'id';
+      protected $useAutoIncrement = true;
+      protected $allowedFields = ['judul', 'isi', 'status', 'slug',
+      'gambar'];
+   }
+   ```
+4. Membuat Controller dengan nama **Artikel.php** pada direktori **app/Controllers**
+   ```
+   <?php
+   namespace App\Controllers;
+   use App\Models\ArtikelModel;
+   class Artikel extends BaseController
+   {
+      public function index()
+      {
+      $title = 'Daftar Artikel';
+      $model = new ArtikelModel();
+      $artikel = $model->findAll();
+      return view('artikel/index', compact('artikel', 'title'));
+      }
+   }
+   ```
+5. Membuat View
+   Buat direktori baru dengan nama **artikel** pada direktori **app/views**, kemudian buat file baru dengan nama **index.php**
+   ```
+   <?= $this->include('template/header'); ?>
+   <?php if($artikel): foreach($artikel as $row): ?>
+   <article class="entry">
+   <h2<a href="<?= base_url('/artikel/' . $row['slug']);?>"><?=
+   $row['judul']; ?></a>
+   </h2>
+   <img src="<?= base_url('/gambar/' . $row['gambar']);?>" alt="<?=
+   $row['judul']; ?>">
+   <p><?= substr($row['isi'], 0, 200); ?></p>
+   </article>
+   <hr class="divider" />
+   <?php endforeach; else: ?>
+   <article class="entry">
+   <h2>Belum ada data.</h2>
+   </article>
+   <?php endif; ?>
+   <?= $this->include('template/footer'); ?>
+   ```
+**Tambahkan beberapa data bada database**
+```
+INSERT INTO artikel (judul, isi, slug) VALUE
+('Perkembangan Teknologi Elektronik dan Dampaknya terhadap Kehidupan Modern', 'Perkembangan Teknologi Elektronik dan Dampaknya terhadap Kehidupan Modern
+Perangkat elektronik telah menjadi bagian tak terpisahkan dari kehidupan sehari-hari manusia modern. Artikel ini mengeksplorasi perkembangan teknologi elektronik dari masa ke masa dan bagaimana inovasi', 'artikel-pertamaPerkembangan Teknologi Elektronik dan Dampaknya terhadap Kehidupan Modern'),
+('Olahraga Sebagai Gaya Hidup Sehat dan Sarana Pemersatu Bangsa', 'Olahraga Sebagai Gaya Hidup Sehat dan Sarana Pemersatu Bangsa
+Olahraga tidak hanya bermanfaat bagi kesehatan fisik dan mental, tetapi juga memiliki nilai sosial yang tinggi sebagai alat pemersatu masyarakat. Artikel ini mengulas pentingnya olahraga sebagai bagian', 'Olahraga Sebagai Gaya Hidup Sehat dan Sarana Pemersatu Bangsa');
+```
+**Selanjutnya buka browser kembali, dengan mengakses url ``http://localhost:8080/artikel``**
+
+![Screenshot 2025-06-27 131648](https://github.com/user-attachments/assets/6832c2e1-98a5-4a25-a75c-cd3ee6cf3ee6)
+
