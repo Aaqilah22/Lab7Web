@@ -1,4 +1,3 @@
-![image](https://github.com/user-attachments/assets/f6f1d6a6-e327-47e2-9bb4-e6ae81692f76)![image](https://github.com/user-attachments/assets/c46bd41a-34a6-4465-884c-035a5b7cffe2)
 
 
 # PRAKTIKUM 1
@@ -321,9 +320,115 @@ Akses menu admin dengan url ``http://localhost:8080/admin/artikel``
     Tambahkan fungsi/method baru pada Controller Artikel dengan nama **delete()**
     ```
     public function delete($id)
-   {
-   $artikel = new ArtikelModel();
-   $artikel->delete($id);
-   return redirect('admin/artikel');
-   }
+    {
+      $artikel = new ArtikelModel();
+      $artikel->delete($id);
+      return redirect('admin/artikel');
+    }
+    ```
+
+# PRAKTIKUM 3
+1. Membuat Layout Utama
+   Buat folder **layout** di dalam **app/Views/**
+   Buat file **main.php** di dalam folder **layout** dengan kode berikut:
    ```
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title><?= $title ?? 'My Website' ?></title>
+       <link rel="stylesheet" href="<?= base_url('/style.css'); ?>">
+   </head>
+   <body>
+       <div id="container">
+           <header>
+               <h1>Layout Sederhana</h1>
+           </header>
+           
+           <nav>
+               <a href="<?= base_url('/'); ?>" class="active">Home</a>
+               <a href="<?= base_url('/artikel'); ?>">Artikel</a>
+               <a href="<?= base_url('/about'); ?>">About</a>
+               <a href="<?= base_url('/contact');?>">Kontak</a>
+   
+           </nav>
+           
+           <section id="wrapper">
+               <section id="main">
+                   <?= $this->renderSection('content') ?>
+               </section>
+               
+               <aside id="sidebar">
+                   <?= view_cell('App\Cells\ArtikelTerkini::render') ?>
+                   
+                   <div class="widget-box">
+                       <h3 class="title">Widget Header</h3>
+                       <ul>
+                           <li><a href="#">Widget Link</a></li>
+                           <li><a href="#">Widget Link</a></li>
+                       </ul>
+                   </div>
+                   
+                   <div class="widget-box">
+                       <h3 class="title">Widget Text</h3>
+                       <p>Vestibulum lorem elit, iaculis in nisl volutpat, malesuada tincidunt arcu. 
+                       Proin in leo fringilla, vestibulum mi porta, faucibus felis. Integer pharetra est nunc, 
+                       nec pretium nunc pretium ac.</p>
+                   </div>
+               </aside>
+           </section>
+           
+           <footer>
+               <p>&copy; 2025 - Universitas Pelita Bangsa</p>
+           </footer>
+       </div>
+   </body>
+   </html>
+   ```
+
+2. Modifikasi File View
+   Ubah **app/Views/home.php** agar sesuai dengan layout baru:
+   ```
+   <?= $this->extend('layout/main') ?>
+   <?= $this->section('content') ?>
+   <h1><?= $title; ?></h1>
+   <hr>
+   <p><?= $content; ?></p>
+   <?= $this->endSection() ?>
+   ```
+
+3. Menampilkan Data Dinamis dengan View Cell
+   - Membuat Class View Call
+     Buat folder Cells di dalam app/
+     Buat file ArtikelTerkini.php di dalam app/Cells/ dengan kode berikut:
+     ```
+     <?php
+      namespace App\Cells;
+      use CodeIgniter\View\Cell;
+      use App\Models\ArtikelModel;
+      class ArtikelTerkini extends Cell
+      {
+      public function render()
+      {
+      $model = new ArtikelModel();
+      $artikel = $model->orderBy('created_at', 'DESC')->limit(5)->findAll();
+      return view('components/artikel_terkini', ['artikel' => $artikel]);
+      }
+     ```
+   - Membuat View untuk View Cell
+     Buat folder components di dalam app/Views/
+     Buat file artikel_terkini.php di dalam app/Views/components/ dengan kode berikut:
+     ```
+     <h3>Artikel Terkini</h3>
+      <ul>
+      <?php foreach ($artikel as $row): ?>
+      <li><a href="<?= base_url('/artikel/' . $row['slug']) ?>"><?=
+      $row['judul'] ?></a></li>
+      <?php endforeach; ?>
+      </ul>
+     ```
+  
+# PRAKTIKUM 4
+
+      }
