@@ -605,4 +605,5 @@ Akses menu admin dengan url ``http://localhost:8080/admin/artikel``
 
 **Percobaan Akses Menu Admin**
 Buka url dengan alamat ``http://localhost:8080/admin/artikel`` 
+
 <img width="902" height="780" alt="Screenshot 2025-05-31 205659" src="https://github.com/user-attachments/assets/8b154ca6-9d3c-4a34-a69d-e9618512ba19" />
