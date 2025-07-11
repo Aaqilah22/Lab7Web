@@ -415,6 +415,7 @@ Akses menu admin dengan url ``http://localhost:8080/admin/artikel``
       $artikel = $model->orderBy('created_at', 'DESC')->limit(5)->findAll();
       return view('components/artikel_terkini', ['artikel' => $artikel]);
       }
+      }
      ```
    - Membuat View untuk View Cell
      Buat folder components di dalam app/Views/
@@ -430,5 +431,178 @@ Akses menu admin dengan url ``http://localhost:8080/admin/artikel``
      ```
   
 # PRAKTIKUM 4
+1. Membuat Tabel user 
+   ```
+   CREATE TABLE user (
+   id INT(11) auto_increment,
+   username VARCHAR(200) NOT NULL,
+   useremail VARCHAR(200),
+   userpassword VARCHAR(200),
+   PRIMARY KEY(id)
+   );
+   ```
+2. Membuat Model User
+   Buat file baru pada kategori **app/Models** dengan nama **UseModel.php**
+   ```
+   <?php
+   namespace App\Controllers;
+   use App\Models\UserModel;
+   class User extends BaseController
+   {
+   public function index()
+   {
+   $title = 'Daftar User';
+   $model = new UserModel();
+   $users = $model->findAll();
+   return view('user/index', compact('users', 'title'));
+   }
+   public function login()
+   {
+   helper(['form']);
+   $email = $this->request->getPost('email');
+   $password = $this->request->getPost('password');
+   if (!$email)
+   {
+   return view('user/login');
+   }
+   $session = session();
+   $model = new UserModel();
+   $login = $model->where('useremail', $email)->first();
+   if ($login)
+   {
+   $pass = $login['userpassword'];
+   if (password_verify($password, $pass))
+   {
+   $login_data = [
+   'user_id' => $login['id'],
+   'user_name' => $login['username'],
+   'user_email' => $login['useremail'],
+   'logged_in' => TRUE,
+   ];
+   $session->set($login_data);
+   return redirect('admin/artikel');
+   }
+   else
+   {
+   $session->setFlashdata("flash_msg", "Password salah.");
+   return redirect()->to('/user/login');
+   }
+   }
+   else
+   {
+   $session->setFlashdata("flash_msg", "email tidak terdaftar.");
+   return redirect()->to('/user/login');
+   }
+   }
+   }
+   ```
+   3. Membuat View Login
+      buat direktori baru dengan nama **user** pada direktori **app/views**, kemudian buat file **login.php**
+      ```
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Login</title>
+          <link rel="stylesheet" href="<?= base_url('/style.css'); ?>">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+      </head>
+      <body>
+          <div id="login-wrapper" class="container mt-5">
+              <h1 class="text-center">Sign In</h1>
+              
+              <?php if (session()->getFlashdata('flash_msg')): ?>
+                  <div class="alert alert-danger">
+                      <?= session()->getFlashdata('flash_msg') ?>
+                  </div>
+              <?php endif; ?>
+      
+              <form action="" method="post">
+                  <div class="mb-3">
+                      <label for="InputForEmail" class="form-label">Email address</label>
+                      <input type="email" name="email" class="form-control" id="InputForEmail" value="<?= set_value('email') ?>">
+                  </div>
+      
+                  <div class="mb-3">
+                      <label for="InputForPassword" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" id="InputForPassword">
+                  </div>
+      
+                  <button type="submit" class="btn btn-primary w-100">Login</button>
+              </form>
+          </div>
+      
+          <!-- Bootstrap JS (optional, jika menggunakan fitur JS dari Bootstrap) -->
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      </body>
+      </html>
+      ```
+   4. Membuat Database Seeder
+      Buka Cmd lalu masuk ke folder, kemudian tulis perintah berikut : ``php spark make:seeder UserSeeder``
 
+      Selanjutnya, buka file **UserSeeder.php** yang berada di lokasi direktori **/app/Database/Seeds/UserSeeder.php** kemudian isi dengan kodo:
+      ```
+      <?php
+      namespace App\Database\Seeds;
+      use CodeIgniter\Database\Seeder;
+      class UserSeeder extends Seeder
+      {
+      public function run()
+      {
+      $model = model('UserModel');
+      $model->insert([
+      'username' => 'admin',
+      'useremail' => 'admin@email.com',
+      'userpassword' => password_hash('admin123', PASSWORD_DEFAULT),
+      ]);
       }
+      }
+      ```
+
+      Selanjutnya buka kembali cmd dan ketik perintah ``php spark db:seed UserSeeder``
+
+   5. Menambahkan Auth Filter
+      Buat file **Auth.php** pada direktori **app/Filters**
+      ```
+      <?php namespace App\Filters;
+      use CodeIgniter\HTTP\RequestInterface;
+      use CodeIgniter\HTTP\ResponseInterface;
+      use CodeIgniter\Filters\FilterInterface;
+      class Auth implements FilterInterface
+      {
+      public function before(RequestInterface $request, $arguments = null)
+      {
+      // jika user belum login
+      if(! session()->get('logged_in')){
+      // maka redirct ke halaman login
+      return redirect()->to('/user/login');
+      }
+      }
+      public function after(RequestInterface $request, ResponseInterface
+      $response, $arguments = null)
+      {
+      // Do something here
+      }
+      }
+      ```
+
+      Selanjutnya buka file **app/Config/Filters.php** tambahkan kode berikut ``'auth' => App\Filters\Auth::class``
+      <img width="853" height="142" alt="image" src="https://github.com/user-attachments/assets/74678ea0-e4ef-4dc1-b4bd-4248bdbadccd" />
+
+      Selanjutnya buka file **app/Config/Routes.php** dan sesuaikan kodenya.
+      <img width="1041" height="339" alt="image" src="https://github.com/user-attachments/assets/67ddd4fd-2058-411b-998d-6ae4c5e2d387" />
+
+   6. Fungsi Logout
+      Tambhkan method logout pada **Controller User** seperti berikut:
+      ```
+      public function logout()
+      {
+         session()->destroy();
+         return redirect()->to('/user/login');
+      }
+      ```
+
+**Percobaan Akses Menu Admin**
+Buka url dengan alamat ``http://localhost:8080/admin/artikel`` 
+<img width="902" height="780" alt="Screenshot 2025-05-31 205659" src="https://github.com/user-attachments/assets/8b154ca6-9d3c-4a34-a69d-e9618512ba19" />
